@@ -2,6 +2,7 @@ package com.abutua.product_backend.resources;
 
 import com.abutua.product_backend.models.Product;
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,8 +40,15 @@ public class ProductController {
     }
 
     @GetMapping("products/{id}")
-    public Product getProduct(@PathVariable int id) {
-        return products.get(id - 1);
+    public ResponseEntity<Product> getProduct(@PathVariable int id) {
+
+        if( id <= products.size()) {
+            return ResponseEntity.ok(products.get(id-1));
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @GetMapping("products")
