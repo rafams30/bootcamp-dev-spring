@@ -20,20 +20,9 @@ public class ProductController {
     @PostConstruct
     public void init() {
 
-        Product p1 = new Product();
-        p1.setId(1);
-        p1.setName("Product 01");
-        p1.setPrice(100.50);
-
-        Product p2 = new Product();
-        p2.setId(2);
-        p2.setName("Product 02");
-        p2.setPrice(200.50);
-
-        Product p3 = new Product();
-        p3.setId(3);
-        p3.setName("Product 03");
-        p3.setPrice(300.50);
+        Product p1 = new Product(1, "Product 01", 100.50);
+        Product p2 = new Product(2, "Product 02", 200.50);
+        Product p3 = new Product(3, "Product 03", 300.50);
 
         products.add(p1);
         products.add(p2);
