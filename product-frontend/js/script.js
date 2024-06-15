@@ -20,6 +20,9 @@ function loadCategories() {
         async: false,
         success : (response) => {
             categories = response;
+            for(var cat of categories) {
+                document.getElementById("selectCategory").innerHTML += `<option value=${cat.id}>${cat.name}</option>`;
+            }
         }
     }); 
 }
