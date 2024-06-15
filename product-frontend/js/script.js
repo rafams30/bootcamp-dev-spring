@@ -9,13 +9,18 @@ var products = [];
 var categories = [];
 
 //OnLoad
-loadProducts();
 loadCategories();
+loadProducts();
 
 //Load all categories
 function loadCategories() {
-    $.getJSON("http://localhost:8080/categories", (response) => {
-        categories = response;
+    $.ajax({
+        url:"http://localhost:8080/categories",
+        type: "GET",
+        async: false,
+        success : (response) => {
+            categories = response;
+        }
     }); 
 }
 
