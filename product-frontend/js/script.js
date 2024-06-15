@@ -6,21 +6,25 @@ function convertToNumber(priceFormat){
 }
 
 var products = [];
-
-var categories = [
-    { id: 1, name: "Produção Própria" },
-    { id: 2, name: "Nacional" },
-    { id: 3, name: "Importado" }
-];
+var categories = [];
 
 //OnLoad
 loadProducts();
+loadCategories();
+
+//Load all categories
+function loadCategories() {
+    $.getJSON("http://localhost:8080/categories", (response) => {
+        categories = response;
+    }); 
+}
 
 //Load all products
 function loadProducts() {
 
     $.getJSON("http://localhost:8080/products", (response) => {
-        for (let prod of response) {
+        products = response;
+        for (let prod of products) {
             addNewRow(prod);
         }
     });    
@@ -95,15 +99,3 @@ function addNewRow(prod) {
     cell.innerHTML = options;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
