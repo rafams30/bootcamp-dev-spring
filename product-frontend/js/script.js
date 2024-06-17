@@ -51,10 +51,21 @@ function save() {
         new: document.getElementById("checkBoxNewProduct").checked
     };
 
-    addNewRow(prod);
-    products.push(prod);
+    $.ajax({
+        url:"http://localhost:8080/products",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(prod),
+        success : (product) => {
+            addNewRow(product);
+            products.push(product);
+            document.getElementById("formProduct").reset();
+        }
+    }); 
 
-    document.getElementById("formProduct").reset();
+    
+
+    
 
 }
 
